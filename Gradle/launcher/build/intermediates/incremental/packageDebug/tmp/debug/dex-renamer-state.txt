@@ -1,0 +1,10 @@
+#Sun May 09 12:43:25 KST 2021
+path.2=classes_0.dex
+path.1=classes.dex
+path.0=classes.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+base.2=C\:\\SW\\JumpingStrike\\Gradle\\launcher\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_0.dex
+base.1=C\:\\SW\\JumpingStrike\\Gradle\\launcher\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out\\classes.dex
+base.0=C\:\\SW\\JumpingStrike\\Gradle\\launcher\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex

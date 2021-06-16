@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AtlasUI
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b09481418dce1ed48833fb50c7bb3b38, type: 3}
+    totalSpriteSurfaceArea: 1705285
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f2403c1045dc45c4aa5d1906725987ed, type: 3}
+  - {fileID: 21300000, guid: eada1690037fd594aa273c45e598b673, type: 3}
+  - {fileID: 21300000, guid: f1301e4266350574c95c3d6bcecbd733, type: 3}
+  - {fileID: 21300000, guid: 461296c2302088c43bd2b12113024c79, type: 3}
+  - {fileID: 21300000, guid: 3301ff346c468cc4484d04ffc2384b7e, type: 3}
+  - {fileID: 21300000, guid: ed81356499820fc4ba0fe4cd63b7add9, type: 3}
+  - {fileID: 21300000, guid: e6f5d3056faa73148a19b455b17e5522, type: 3}
+  - {fileID: 21300000, guid: d2761126a78ff8f47a74058200ac1a0f, type: 3}
+  - {fileID: 21300000, guid: 23671ec79a58b2a47930885026886c54, type: 3}
+  - {fileID: 21300000, guid: 352d3918a428883418d7c3c87131313b, type: 3}
+  - {fileID: 21300000, guid: 39a99f880dabddb4b8f6ffb018c34c70, type: 3}
+  - {fileID: 21300000, guid: 9013f3d8ac43c364e8f3ee2d3c2829f1, type: 3}
+  - {fileID: 21300000, guid: eb5c5f999b22d5b4bb0c89b98509808e, type: 3}
+  - {fileID: 21300000, guid: e4c5e73a7ad51374f8d9dc6c8776273d, type: 3}
+  - {fileID: 21300000, guid: 4c4b032b296b9424f854edf456fd9af9, type: 3}
+  - {fileID: 21300000, guid: 38333f2bc823a7f4e9ee54052b8dada3, type: 3}
+  - {fileID: 21300000, guid: 8365184b77ad98f42ad24759be702c11, type: 3}
+  - {fileID: 21300000, guid: 99851aaba81450645bf7f128c6cbca08, type: 3}
+  - {fileID: 21300000, guid: f14cc6bdfcf47464e8c57336f6b7c1a8, type: 3}
+  - {fileID: 21300000, guid: 7a27012edead92a4c9296148c216f965, type: 3}
+  - {fileID: 21300000, guid: f0d91c0f44b51de46822b92e0c8e897c, type: 3}
+  - {fileID: 21300000, guid: bbdbca2fd16505942b0f4f3c9bfa0ae7, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - btn_back
+  - bg_deco
+  - bg_coin
+  - bg_bestscore
+  - btn_close
+  - btn_ranking
+  - btn_play
+  - btn_coin
+  - img_balloon
+  - btn_ca
+  - img_click_02
+  - bg_shop_ca
+  - btn_open
+  - btn_start_bg_02
+  - btn_start
+  - btn_start_bg_01
+  - img_x
+  - btn_setting
+  - img_title
+  - img_click_01
+  - btn_shop
+  - btn_ad
+  m_RenderDataMap: {}
+  m_Tag: AtlasUI
+  m_IsVariant: 0

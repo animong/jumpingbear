@@ -13,12 +13,25 @@ public class PlayManager : MonoBehaviour
 	public PlayUI ui;
 	public PlayStage stage;
 	public Player player;
+	public PopupLoaing loading;
+
+	[HideInInspector]
 	public LevelData data;
 	
 	public const float MAX_W = 70f;
 
 	private void Awake()
 	{
+#if UNITY_EDITOR
+		if (SceneManager.ins == null)
+		{
+			UnityEngine.SceneManagement.SceneManager.LoadScene("001_Lobby");
+
+			//Debug.Log("Move Lobby Scene");
+			return;
+		}
+#endif
+
 		if (PlayManager.ins != null)
 		{
 			Destroy(this);
@@ -30,18 +43,7 @@ public class PlayManager : MonoBehaviour
 
 	void Start()
     {
-#if UNITY_EDITOR
-		if (SceneManager.ins == null)
-		{
-			UnityEngine.SceneManagement.SceneManager.LoadScene("001_Lobby");
-
-			//Debug.Log("Move Lobby Scene");
-			return;
-		}
-#endif
-		QualitySettings.vSyncCount = 0;
-		Application.targetFrameRate = 60;
-		
+		LevelData.ins.loading = loading;
 		Init();
 	}
 

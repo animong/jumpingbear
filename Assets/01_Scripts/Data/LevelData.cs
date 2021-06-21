@@ -11,6 +11,8 @@ public class LineData
 	public int startY;
 	/// <summary> 체크단계</summary>
 	public int checkGap;
+	/// <summary> 설정 확률</summary>
+	public int rate;
 	/// <summary> 화면표시시간 </summary>
 	public int time;
 
@@ -74,6 +76,12 @@ public class LevelData : MonoBehaviour
 	[Header("라인 타입 정보")]
 	public List<LineData> lines;
 
+	public PopupLoaing loading;
+
+	private bool is_load;
+	private int load_cnt;
+	private bool is_first_load;
+
 	public void Awake()
 	{
 		if (LevelData.ins != null && LevelData.ins != this)
@@ -84,6 +92,11 @@ public class LevelData : MonoBehaviour
 
 		LevelData.ins = this;
 		DontDestroyOnLoad(gameObject);
+
+		load_cnt = 0;
+		is_load = false;
+		is_first_load = false;
+
 
 		startY = 0;
 
@@ -117,25 +130,37 @@ public class LevelData : MonoBehaviour
 		lines[lines.Count - 1].order = 150;
 		lines[lines.Count - 1].startY = 10;
 		lines[lines.Count - 1].checkGap = 2;
-
-		LoadData();
+		
+		//LoadData();
 	}
 
-
-
-	private bool is_load = false;
+	public void LoadFirstLoad()
+	{
+		if (is_first_load == true) return;
+		LoadData();
+	}
 
 	public void LoadData()
 	{
 		if (is_load == true) return;
+
+		loading.obj.SetActive(true);
+		UnityWebRequest.ClearCookieCache();
 		is_load = true;
-		StartCoroutine(DoLoadData());
+		load_cnt = 0;
+		StartCoroutine(LoadLevel());
+		StartCoroutine(LoadLevelLine());
 	}
 
-	private IEnumerator DoLoadData()
+	private IEnumerator LoadLevel()
 	{
 		UnityWebRequest www;
-		www = UnityWebRequest.Get("https://docs.google.com/spreadsheets/d/e/2PACX-1vR_AEgug0cCtyoSuG4Qe-3RdGI3PdogQzsA1n-XgzPmde730iGQLQBXVB_50PbR0YYuZpXI7u3IqIzl/pub?output=csv&gid=0");
+
+		//https://docs.google.com/spreadsheets/d/1sXlKMiNriLeDi1XR86dRdM2upowCTBepGoVmjAPs1VY/edit?usp=sharing
+		//https://docs.google.com/spreadsheets/d/1sXlKMiNriLeDi1XR86dRdM2upowCTBepGoVmjAPs1VY/edit#gid=0
+
+		//www = UnityWebRequest.Get("https://docs.google.com/spreadsheets/d/e/2PACX-1vR_AEgug0cCtyoSuG4Qe-3RdGI3PdogQzsA1n-XgzPmde730iGQLQBXVB_50PbR0YYuZpXI7u3IqIzl/pub?output=csv&gid=0");
+		www = UnityWebRequest.Get("https://docs.google.com/spreadsheets/d/1sXlKMiNriLeDi1XR86dRdM2upowCTBepGoVmjAPs1VY/export?format=csv&gid=0");
 		
 		yield return www.SendWebRequest();
 
@@ -188,8 +213,23 @@ public class LevelData : MonoBehaviour
 			}
 		}
 		www.Dispose();
-	  //www = UnityWebRequest.Get("https://docs.google.com/spreadsheets/d/e/2PACX-1vR_AEgug0cCtyoSuG4Qe-3RdGI3PdogQzsA1n-XgzPmde730iGQLQBXVB_50PbR0YYuZpXI7u3IqIzl/pub?output=csv
-		www = UnityWebRequest.Get("https://docs.google.com/spreadsheets/d/e/2PACX-1vR_AEgug0cCtyoSuG4Qe-3RdGI3PdogQzsA1n-XgzPmde730iGQLQBXVB_50PbR0YYuZpXI7u3IqIzl/pub?output=csv&gid=1422264379");
+		www = null;
+		
+		CheckLoad();
+		yield break;
+	}
+
+	private IEnumerator LoadLevelLine()
+	{
+		UnityWebRequest www;
+		string[] cell;
+		string[] row;
+		int i, j;
+		int key_idx = 0;
+
+		//www = UnityWebRequest.Get("https://docs.google.com/spreadsheets/d/e/2PACX-1vR_AEgug0cCtyoSuG4Qe-3RdGI3PdogQzsA1n-XgzPmde730iGQLQBXVB_50PbR0YYuZpXI7u3IqIzl/pub?output=csv
+		//www = UnityWebRequest.Get("https://docs.google.com/spreadsheets/d/e/2PACX-1vR_AEgug0cCtyoSuG4Qe-3RdGI3PdogQzsA1n-XgzPmde730iGQLQBXVB_50PbR0YYuZpXI7u3IqIzl/pub?output=csv&gid=1422264379");
+		www = UnityWebRequest.Get("https://docs.google.com/spreadsheets/d/1sXlKMiNriLeDi1XR86dRdM2upowCTBepGoVmjAPs1VY/export?format=csv&gid=1829669208");
 
 		yield return www.SendWebRequest();
 
@@ -208,7 +248,7 @@ public class LevelData : MonoBehaviour
 		for (i = 0; i < cell.Length; i++)
 		{
 			row = cell[i].Split(',');
-			
+
 			if (i == 0)
 			{
 				cell_menu = cell[i].Split(',');
@@ -232,6 +272,7 @@ public class LevelData : MonoBehaviour
 				{
 					case "order": lines[j - 2].order = int.Parse(row[j]); break;
 					case "startY": lines[j - 2].startY = int.Parse(row[j]); break;
+					case "rate": lines[j - 2].rate = int.Parse(row[j]); break;
 					case "checkGap": lines[j - 2].checkGap = int.Parse(row[j]); break;
 					case "time": lines[j - 2].time = int.Parse(row[j]); break;
 					case "move_speed": lines[j - 2].move_speed = int.Parse(row[j]); break;
@@ -248,9 +289,45 @@ public class LevelData : MonoBehaviour
 
 		www.Dispose();
 		www = null;
-
-		is_load = false;
+		
+		CheckLoad();
 		yield break;
+	}
+
+	private void CheckLoad()
+	{
+		load_cnt++;
+
+		if (load_cnt != 2) return;
+
+		lines.Sort(AlignLine);
+		
+		loading.obj.SetActive(false);
+		is_load = false;
+		is_first_load = true;
+	}
+	/// <summary>
+	/// 라인 생성 설정 내용
+	/// </summary>
+	/// <param name="idxCreate"></param>
+	/// <returns></returns>
+	public int GetLineIdx(int idxCreate)
+	{
+		for (int i = 0; i < lines.Count; i++)
+		{
+			if (idxCreate * lineGap > lines[i].startY
+				&& idxCreate % lines[i].checkGap == 0
+				&& Random.Range(0,100) < lines[i].rate)
+			{
+				return i;
+			}
+		}
+		return lines.Count - 1;
+	}
+
+	private int AlignLine(LineData a, LineData b)
+	{
+		return b.order.CompareTo(a.order);
 	}
 
 }

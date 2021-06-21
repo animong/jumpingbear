@@ -18,7 +18,7 @@ public class PlayLinePool : MonoBehaviour
 
 	private int idxCreate;
 	private int startRan;
-
+	
 	public void Init()
 	{
 		list = new List<PlayLine>();
@@ -88,6 +88,8 @@ public class PlayLinePool : MonoBehaviour
 	{
 		line = GetLine();
 
+		line.data = PlayManager.ins.data.lines[PlayManager.ins.data.GetLineIdx(idxCreate)];
+		
 		line.Init();
 		line.tran.SetParent(PlayManager.ins.stage.ground.tranScroll);
 
@@ -102,11 +104,20 @@ public class PlayLinePool : MonoBehaviour
 
 		//≥–¿Ã º≥¡§
 		vec = line.render.GetPosition(0);
-		vec.x = PlayManager.ins.data.lineWidth * -0.5f; //PlayManager.MAX_W * -0.25f;
+		float line_width;
+		if (line.data.width_min != 0)
+		{
+			line_width = Random.Range(line.data.width_min, line.data.width_max);
+		}
+		else
+		{
+			line_width = PlayManager.ins.data.lineWidth;
+		}
+		vec.x = line_width * -0.5f;
 		line.render.SetPosition(0, vec);
 
 		vec = line.render.GetPosition(2);
-		vec.x = PlayManager.ins.data.lineWidth * 0.5f;//PlayManager.MAX_W * 0.25f;
+		vec.x = line_width * 0.5f;//PlayManager.MAX_W * 0.25f;
 		line.render.SetPosition(2, vec);
 
 		line.render.startWidth = PlayManager.ins.data.lineHeight;
@@ -124,7 +135,6 @@ public class PlayLinePool : MonoBehaviour
 		}
 		else line.coin.obj.SetActive(false);
 
-		line.data = PlayManager.ins.data.lines[0];
 		line.InitPos();
 		line.obj.SetActive(true);
 

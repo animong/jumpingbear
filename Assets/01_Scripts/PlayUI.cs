@@ -22,6 +22,9 @@ public class PlayUI : MonoBehaviour
 		btnPause.btn.onClick.AddListener(ClickPause);
 	}
 
+	public int GetDistance() { return distance; }
+	public int GetCoin() { return coin; }
+
 	public void InitData()
 	{
 		coin = 0;
@@ -55,7 +58,7 @@ public class PlayUI : MonoBehaviour
 			txtDistance.text = string.Format("{0:000}m", num);
 		}
 	}
-
+	
 	private void ClickPause()
 	{
 		SceneManager.ins.LoadScene(SceneManager.SCENE.LOBBY);

@@ -35,7 +35,7 @@ public class EditorLevel : Editor
 
 	private const string STR_RELOAD = "데이터 불러오기";
 
-	private bool isLineOpen = false;
+	//private bool isLineOpen = false;
 
 	private string str_result = string.Empty;
 
@@ -47,10 +47,19 @@ public class EditorLevel : Editor
 		}
 
 		base.OnInspectorGUI();
+		GUILayout.Space(10);
 		
+
+		if (GUILayout.Button(STR_RESTART_DES))
+		{
+			if (PlayManager.ins != null)
+			{
+				PlayManager.ins.GameOver();
+			}
+		}
 		GUILayout.Space(10);
 
-		
+
 
 		//GUILayout.BeginHorizontal();
 		/*
@@ -108,21 +117,13 @@ public class EditorLevel : Editor
 		{
 			if (GUILayout.Button(STR_LINE_OPEN)) {	isLineOpen = true; }
 		}
-		GUILayout.Space(10);
 
+		GUILayout.Space(10);
 		if (GUILayout.Button(STR_RESET_DES))
 		{
 			data.Awake();
 		}
-		
-		if (GUILayout.Button(STR_RESTART_DES))
-		{
-			if (PlayManager.ins != null)
-			{
-				PlayManager.ins.GameOver();
-			}
-		}
-		
+
 		GUILayout.Space(10);
 		if (GUILayout.Button(STR_PRINT))
 		{

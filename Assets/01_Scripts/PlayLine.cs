@@ -212,6 +212,8 @@ public class PlayLine : MonoBehaviour
 
 				yield break;
 			}
+			//시간에의한 선 길이 점점 좁아 지도록
+
 			yield return new WaitForEndOfFrame();
 		}
 		yield break;

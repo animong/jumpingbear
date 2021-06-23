@@ -81,6 +81,7 @@ public class LevelData : MonoBehaviour
 	private bool is_load;
 	private int load_cnt;
 	private bool is_first_load;
+	private bool is_restart;
 
 	public void Awake()
 	{
@@ -140,9 +141,10 @@ public class LevelData : MonoBehaviour
 		LoadData();
 	}
 
-	public void LoadData()
+	public void LoadData(bool restart = false)
 	{
 		if (is_load == true) return;
+		is_restart = restart;
 
 		loading.obj.SetActive(true);
 		UnityWebRequest.ClearCookieCache();
@@ -305,6 +307,8 @@ public class LevelData : MonoBehaviour
 		loading.obj.SetActive(false);
 		is_load = false;
 		is_first_load = true;
+
+		if (PlayManager.ins != null && is_restart) PlayManager.ins.GameOver();
 	}
 	/// <summary>
 	/// 라인 생성 설정 내용

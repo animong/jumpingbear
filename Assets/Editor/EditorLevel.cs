@@ -35,6 +35,8 @@ public class EditorLevel : Editor
 
 	private const string STR_RELOAD = "데이터 불러오기";
 
+	private const string STR_MOVE_Y = "StartY로 이동";
+
 	//private bool isLineOpen = false;
 
 	private string str_result = string.Empty;
@@ -43,20 +45,23 @@ public class EditorLevel : Editor
 	{
 		if (GUILayout.Button(STR_RELOAD))
 		{
-			if (LevelData.ins != null) LevelData.ins.LoadData();
+			if (LevelData.ins != null) LevelData.ins.LoadData(true);
 		}
+		if (GUILayout.Button(STR_RESTART_DES))
+		{
+			if (PlayManager.ins != null) PlayManager.ins.GameOver();
 
+		}
+		if (GUILayout.Button(STR_MOVE_Y))
+		{
+			//if (PlayManager.ins != null) PlayManager.ins.GameOver();
+
+		}
 		base.OnInspectorGUI();
 		GUILayout.Space(10);
 		
 
-		if (GUILayout.Button(STR_RESTART_DES))
-		{
-			if (PlayManager.ins != null)
-			{
-				PlayManager.ins.GameOver();
-			}
-		}
+		
 		GUILayout.Space(10);
 
 

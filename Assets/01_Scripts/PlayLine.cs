@@ -149,6 +149,7 @@ public class PlayLine : MonoBehaviour
 		yield break;
 	}
 
+	
 	public void ReturnLine()
 	{
 		isDrag = false;
@@ -193,30 +194,62 @@ public class PlayLine : MonoBehaviour
 
 	private IEnumerator DoTake()
 	{
+		float rate;
+		Vector3 vec;
+
 		while (isTake)
 		{
 			//Debug.Log("Time.time:" + Time.time + ",data.time:" + (TakeTime + data.time));
 			if (Time.time > TakeTime + data.time)
 			{
-				isDrag = false;
-				isReturn = false;
-				isTake = false;
-
-				for (int i = 0; i < arrPos.Length; i++)
-				{
-					render.SetPosition(i, arrPos[i]);
-				}
-				PlayManager.ins.stage.linePool.ReturnLine(this);
-				PlayManager.ins.player.isFly = true;
-				PlayManager.ins.player.guide.obj.SetActive(false);
-
+				OutLine();
 				yield break;
 			}
 			//시간에의한 선 길이 점점 좁아 지도록
+			rate = 1f - ((Time.time - TakeTime) / data.time);
 
+			for (int i = 0; i < arrPos.Length; i++)
+			{
+				vec = arrPos[i];
+				vec.x *= rate;
+				render.SetPosition(i, vec);
+
+
+				if (isDrag) continue;
+
+				//Debug.Log(PlayManager.ins.player.tran.localPosition.x + "::"+ (vec.x + tran.localPosition.x));
+
+				if (i == 0 && PlayManager.ins.player.tran.localPosition.x < vec.x + tran.localPosition.x)
+				{
+					OutLine();
+					yield break;
+				}
+				if (i == 2 && PlayManager.ins.player.tran.localPosition.x > vec.x + tran.localPosition.x)
+				{
+					OutLine();
+					yield break;
+				}
+			}
+			
 			yield return new WaitForEndOfFrame();
 		}
 		yield break;
+	}
+
+	private void OutLine()
+	{
+		isDrag = false;
+		isReturn = false;
+		isTake = false;
+
+		for (int i = 0; i < arrPos.Length; i++)
+		{
+			render.SetPosition(i, arrPos[i]);
+		}
+		PlayManager.ins.stage.linePool.ReturnLine(this);
+		PlayManager.ins.player.isFly = true;
+		PlayManager.ins.player.guide.obj.SetActive(false);
+
 	}
 
 }

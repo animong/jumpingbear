@@ -47,7 +47,7 @@ public class PlayManager : MonoBehaviour
 		Init();
 	}
 
-	private void Init(bool isFirst = true)
+	private void Init(bool isFirst = true, bool isStartY = true)
 	{
 		if (isFirst)
 		{
@@ -56,9 +56,10 @@ public class PlayManager : MonoBehaviour
 		}
 		else
 		{
-			stage.linePool.InitLine();
-			stage.ground.Init();
+			stage.linePool.InitLine(isStartY);
+			stage.ground.Init(isStartY);
 		}
+
 		player.Init();
 		ui.InitData();
 
@@ -89,6 +90,11 @@ public class PlayManager : MonoBehaviour
 
 		Init(false);
 		//SceneManager.ins.LoadScene(SceneManager.SCENE.LOBBY);
+	}
+
+	public void RestartY()
+	{
+		Init(false, true);
 	}
 
 }

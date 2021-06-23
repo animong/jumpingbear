@@ -11,13 +11,21 @@ public class PlayGround : MonoBehaviour
 
 	public float MIN_STAGE;
 
-	public void Init()
+	public void Init(bool isStartY = false)
 	{
 		MIN_STAGE = PlayManager.ins.data.playY;
 		vec = Vector3.zero;
 		vec.y = MIN_STAGE;
-
+		
 		tranScroll.localPosition = vec;
+
+		if (isStartY == true)
+		{
+			vec = tran.localPosition;
+			vec.y = PlayManager.ins.data.startY;
+			tran.localPosition = vec;
+			UpdateMinPos();
+		}
 	}
 
 	public void UpdateMinPos()

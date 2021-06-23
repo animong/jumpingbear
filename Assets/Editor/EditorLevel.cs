@@ -52,11 +52,12 @@ public class EditorLevel : Editor
 			if (PlayManager.ins != null) PlayManager.ins.GameOver();
 
 		}
+		/*
 		if (GUILayout.Button(STR_MOVE_Y))
 		{
-			//if (PlayManager.ins != null) PlayManager.ins.GameOver();
-
+			if (PlayManager.ins != null) PlayManager.ins.RestartY();
 		}
+		*/
 		base.OnInspectorGUI();
 		GUILayout.Space(10);
 		

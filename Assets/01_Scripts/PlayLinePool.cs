@@ -49,7 +49,7 @@ public class PlayLinePool : MonoBehaviour
 		
 	}
 
-	public void InitLine()
+	public void InitLine(bool isStartY = false)
 	{
 		actLine = null;
 		prefab.obj.SetActive(false);
@@ -57,10 +57,11 @@ public class PlayLinePool : MonoBehaviour
 		ReturnViewAll();
 
 		vec = Vector3.zero;
-		int i;
 		startRan = Random.Range(0, 2);
 
-		for (i = 0; i < 5; i++)
+		if (isStartY) idxCreate = Mathf.FloorToInt(PlayManager.ins.data.startY / PlayManager.ins.data.lineGap);
+
+		for (int i = 0; i < 5; i++)
 		{
 			CreateLine();
 		}

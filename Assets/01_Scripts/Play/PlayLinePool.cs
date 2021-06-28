@@ -18,7 +18,9 @@ public class PlayLinePool : MonoBehaviour
 
 	private int idxCreate;
 	private int startRan;
-	
+
+	private int n;
+
 	public void Init()
 	{
 		list = new List<PlayLine>();
@@ -36,7 +38,15 @@ public class PlayLinePool : MonoBehaviour
 		}
 		idxCreate = 0;
 	}
-	
+
+	public void UpdateLine()
+	{
+		for (n = 0; n < view.Count; n++)
+		{
+			view[n].UpdateLine();
+		}
+	}
+
 	public void ReturnLine(PlayLine line)
 	{
 		list.Add(line);
@@ -45,8 +55,6 @@ public class PlayLinePool : MonoBehaviour
 		line.tran.SetParent(tran);
 
 		view.Remove(line);
-		//view.RemoveAt(0);
-		
 	}
 
 	public void InitLine(bool isStartY = false)
@@ -138,6 +146,16 @@ public class PlayLinePool : MonoBehaviour
 
 		line.InitPos();
 		line.obj.SetActive(true);
+
+		if (line.data.birdSpeed != 0)
+		{	//새 설정
+			PlayManager.ins.stage.birdPool.CreateBird(line.tran.position.y, line.data.birdSpeed, line.data.birdShowTime);
+		}
+
+		if (line.data.windSpeed != 0)
+		{   //바람 설정
+			PlayManager.ins.stage.windPool.CreateWind(line.tran.position.y, line.data.windSpeed);
+		}
 
 		idxCreate++;
 	}

@@ -35,6 +35,10 @@ public class LineData
 	/// <summary> 바람 속도 </summary>
 	public int windSpeed;
 
+	/// <summary> 새 속도 </summary>
+	public int birdSpeed;
+	/// <summary> 새 등장 타이밍 </summary>
+	public int birdShowTime;
 
 }
 
@@ -285,6 +289,8 @@ public class LevelData : MonoBehaviour
 					case "width_min": lines[j - 2].width_min = int.Parse(row[j]); break;
 					case "width_max": lines[j - 2].width_max = int.Parse(row[j]); break;
 					case "windSpeed": lines[j - 2].windSpeed = int.Parse(row[j]); break;
+					case "birdSpeed": lines[j - 2].birdSpeed = int.Parse(row[j]); break;
+					case "birdShowTime": lines[j - 2].birdShowTime = int.Parse(row[j]); break;
 				}
 			}
 		}

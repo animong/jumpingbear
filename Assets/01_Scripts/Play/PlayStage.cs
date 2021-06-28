@@ -9,12 +9,19 @@ public class PlayStage : MonoBehaviour
 	private Vector3 vec3;
 	private Ray ray;
 	private RaycastHit hit;
-
-	public int layerLine;
+	
 	private int layerHit;
+	[HideInInspector]
+	public int layerLine;
+	[HideInInspector]
 	public int layerCoin;
+	[HideInInspector]
+	public int layerBird;
 
 	public PlayLinePool linePool;
+	public ObjectBirdPool birdPool;
+	public ObjectWindPool windPool;
+	
 	public PlayGround ground;
 
 	private PlayLine selLine;
@@ -24,8 +31,12 @@ public class PlayStage : MonoBehaviour
 		layerLine = 1 << LayerMask.NameToLayer("Line");
 		layerHit = 1 << LayerMask.NameToLayer("Hit");
 		layerCoin = 1 << LayerMask.NameToLayer("Coin");
+		layerBird = 1 << LayerMask.NameToLayer("Bird");
 
+		birdPool.Init();
+		windPool.Init();
 		linePool.Init();
+		
 		ground.Init();
 	}
 

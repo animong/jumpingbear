@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
 
 	private PlayLine line;
 	private PlayCoin coin;
-	
+	private ObjectBird bird;
+
 	private Vector3 prevPos;
 	private float ShotPos;
 
@@ -84,6 +85,10 @@ public class Player : MonoBehaviour
 		force.y -= PlayManager.ins.data.gravity * Time.smoothDeltaTime;
 		vecMove = tran.position;
 		vecMove += force * Time.smoothDeltaTime;
+
+		//바람에 의한 이동
+		vecMove.x += PlayManager.ins.stage.windPool.CheckWind(tran.position.y);
+
 		tran.position = vecMove;
 
 		if (force.y < 0f) tranMesh.localRotation = Quaternion.identity; 
@@ -98,6 +103,21 @@ public class Player : MonoBehaviour
 				if (coin == null) continue;
 				coin.obj.SetActive(false);
 				PlayManager.ins.ui.AddCoin();
+			}
+		}
+		//새 충돌
+		colHit = Physics.OverlapCapsule(tranPoint1.position, tranPoint2.position, 1f, PlayManager.ins.stage.layerBird);
+		if (colHit != null)
+		{
+			for (num = 0; num < colHit.Length; num++)
+			{
+				if (colHit[num] == null || colHit[num].gameObject == null) continue;
+				bird = colHit[num].transform.GetComponent<ObjectBird>();
+				if (bird == null) continue;
+
+				if (force.y > 0) force.y *= -1;
+				force.y -= 5f;
+				force.x *= 0.5f;
 			}
 		}
 
@@ -134,7 +154,7 @@ public class Player : MonoBehaviour
 				//Debug.Log(colHit[num].gameObject.name);
 			}
 		}
-
+	
 		prevPos = tran.position;
 		
 		if (tran.position.y < -100

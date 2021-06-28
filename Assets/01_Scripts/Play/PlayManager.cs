@@ -56,21 +56,26 @@ public class PlayManager : MonoBehaviour
 		}
 		else
 		{
+			stage.birdPool.ReturnViewAll();
+			stage.windPool.ReturnViewAll();
 			stage.linePool.InitLine(isStartY);
 			stage.ground.Init(isStartY);
 		}
 
 		player.Init();
 		ui.InitData();
-
+		stage.linePool.actLine.FirstTake();
 		//player.obj.SetActive(true);
 		//stage.linePool.line.obj.SetActive(true);
 	}
 	
     void Update()
     {
-		player.UpdatePlayer();
+		stage.linePool.UpdateLine();
+		stage.birdPool.UpdateBird();
+		stage.windPool.UpdateWind();
 
+		player.UpdatePlayer();
 
 		/*
 		 	deltaTime += (Time.deltaTime - deltaTime) * 0.1f;

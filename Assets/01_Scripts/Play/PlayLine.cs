@@ -11,7 +11,7 @@ public class PlayLine : MonoBehaviour
 	public BoxCollider col;
 
 	public PlayCoin coin;
-
+	
 	private bool isDrag;
 	private bool isReturn;
 	private bool isTake;
@@ -19,9 +19,17 @@ public class PlayLine : MonoBehaviour
 	private Vector3[] arrPos;
 
 	public LineData data;
-
-	private float TakeTime;
 	
+	private float TakeTime;
+
+	private Vector3 vec3;
+	private bool move_up;
+	private bool move_left;
+
+	private float move_x_min;
+	private float move_x_max;
+	private float move_y_min;
+	private float move_y_max;
 
 	public void Init()
 	{
@@ -40,6 +48,11 @@ public class PlayLine : MonoBehaviour
 		{
 			arrPos[i] = render.GetPosition(i);
 		}
+
+		move_x_min = data.move_X_min + tran.localPosition.x;
+		move_x_max = data.move_X_max + tran.localPosition.x;
+		move_y_min = data.move_y_min + tran.localPosition.y;
+		move_y_max = data.move_y_max + tran.localPosition.y;
 	}
 
 	public void DragLine(Vector3 hitPoint)
@@ -149,6 +162,28 @@ public class PlayLine : MonoBehaviour
 		yield break;
 	}
 
+	public void UpdateLine()
+	{
+		if (isTake) return;
+
+		vec3 = tran.localPosition;
+
+		if (data.move_X_min != 0)
+		{
+			vec3.x += ((float)data.move_speed * Time.smoothDeltaTime * 1f) * (move_left ? -1 : 1);
+			tran.localPosition = vec3;
+			if (move_left && vec3.x < move_x_min) move_left = false;
+			if (!move_left && vec3.x > move_x_max) move_left = true;
+		}
+
+		if (data.move_y_min != 0)
+		{
+			vec3.y += ((float)data.move_speed * Time.smoothDeltaTime * 1f) * (move_up ? -1 : 1);
+			tran.localPosition = vec3;
+			if (move_up && vec3.y < move_y_min) move_up = false;
+			if (!move_up && vec3.y > move_y_max) move_up = true;
+		}
+	}
 	
 	public void ReturnLine()
 	{
@@ -184,10 +219,15 @@ public class PlayLine : MonoBehaviour
 		yield break;
 	}
 
+	public void FirstTake() { isTake = true;	}
+
 	public void TakePlayer()
 	{
 		TakeTime = Time.time;
 		isTake = true;
+
+		if (data.time == 0) return;
+
 		//Debug.Log("TakePlayer");
 		StartCoroutine(DoTake());
 	}
@@ -205,6 +245,7 @@ public class PlayLine : MonoBehaviour
 				OutLine();
 				yield break;
 			}
+			
 			//시간에의한 선 길이 점점 좁아 지도록
 			rate = 1f - ((Time.time - TakeTime) / data.time);
 
@@ -231,6 +272,7 @@ public class PlayLine : MonoBehaviour
 				}
 			}
 			
+
 			yield return new WaitForEndOfFrame();
 		}
 		yield break;

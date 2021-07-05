@@ -43,8 +43,9 @@ public class PlayManager : MonoBehaviour
 
 	void Start()
     {
-		LevelData.ins.loading = loading;
 		Init();
+		LevelData.ins.loading = loading;
+		LevelData.ins.LoadFirstLoad();
 	}
 
 	private void Init(bool isFirst = true, bool isStartY = true)

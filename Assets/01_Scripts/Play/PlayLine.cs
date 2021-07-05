@@ -92,7 +92,8 @@ public class PlayLine : MonoBehaviour
 		while (isDrag)
 		{
 			yield return new WaitForEndOfFrame();
-			
+			//yield return new WaitForSeconds(0.01f);
+
 			//dragL = startL + (PlayManager.ins.stage.MouseHitVec() - startM);
 			dragL = PlayManager.ins.stage.MouseHitVec() - tran.position;
 			dragL.z = -2f;

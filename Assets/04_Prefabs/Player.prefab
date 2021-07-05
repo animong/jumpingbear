@@ -365,20 +365,20 @@ LineRenderer:
         outWeight: 0.31428573
       - serializedVersion: 3
         time: 1
-        value: 0.62499994
-        inSlope: -0.64539003
-        outSlope: -0.64539003
+        value: 0.23706812
+        inSlope: -1.300594
+        outSlope: -1.300594
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.16785717
+        inWeight: 0.2087912
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.5518868, g: 1, b: 0.98410946, a: 1}
-      key1: {r: 0.5518868, g: 1, b: 0.98410946, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0.5943396, g: 0.5392756, b: 0, a: 0}
       key3: {r: 0.5943396, g: 0.5392756, b: 0, a: 0.5764706}
       key4: {r: 0, g: 0, b: 0, a: 0}

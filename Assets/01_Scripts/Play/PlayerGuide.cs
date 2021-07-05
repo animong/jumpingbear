@@ -29,7 +29,8 @@ public class PlayerGuide : MonoBehaviour
 	{
 		if (PlayManager.ins.stage.linePool.actLine == null) return;
 
-		deltaTime = Time.smoothDeltaTime;
+		//deltaTime = Time.smoothDeltaTime;
+		deltaTime = 0.018f;
 		UpdateGuideLine(PlayManager.ins.player.tran.position - PlayManager.ins.stage.linePool.actLine.tran.position);
 		obj.SetActive(true);
 		
@@ -48,6 +49,8 @@ public class PlayerGuide : MonoBehaviour
 		
 		num = 1;
 		int i = 0;
+
+		//deltaTime = Time.smoothDeltaTime;
 		while (true)
 		{   //가이드 라인 설정
 			pos[num] = pos[num - 1];
@@ -59,6 +62,10 @@ public class PlayerGuide : MonoBehaviour
 			num++;
 			if (num >= pos.Length) break;
 		}
+		//pos[0].x = PlayManager.ins.player.tranPoint2.position.x;
+		//pos[0].y = PlayManager.ins.player.tranPoint2.position.y;
+		pos[0] = pos[1];
+
 		render.SetPositions(pos);
 	}
 

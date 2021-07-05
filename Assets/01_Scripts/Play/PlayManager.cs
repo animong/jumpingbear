@@ -15,13 +15,13 @@ public class PlayManager : MonoBehaviour
 	public Player player;
 	public PopupLoaing loading;
 
-	[HideInInspector]
 	public LevelData data;
 	
 	public const float MAX_W = 70f;
 
 	private void Awake()
 	{
+		/*
 #if UNITY_EDITOR
 		if (SceneManager.ins == null)
 		{
@@ -31,14 +31,14 @@ public class PlayManager : MonoBehaviour
 			return;
 		}
 #endif
-
+		*/
 		if (PlayManager.ins != null)
 		{
 			Destroy(this);
 			return;
 		}
 		PlayManager.ins = this;
-		data = LevelData.ins;
+		//data = LevelData.ins;
 	}
 
 	void Start()

@@ -5,8 +5,18 @@ using UnityEngine;
 public class PlayUI : MonoBehaviour
 {
 	public ButtonObject btnHitArea;
+
 	public UnityEngine.UI.Text txtDistance;
+	public UnityEngine.UI.Text txtDistanceTop;
+
 	public UnityEngine.UI.Text txtCoin;
+	
+	public GameObject objIngame;
+	public GameObject objMain;
+
+	public GameObject objIngameBubble;
+	
+
 
 	public ButtonObject btnPause;
 
@@ -20,6 +30,9 @@ public class PlayUI : MonoBehaviour
 	{
 		btnHitArea.fncPress = PressHit;
 		btnPause.btn.onClick.AddListener(ClickPause);
+
+		objMain.SetActive(true);
+		objIngame.SetActive(false);
 	}
 
 	public int GetDistance() { return distance; }
@@ -35,6 +48,13 @@ public class PlayUI : MonoBehaviour
 
 	private void PressHit(bool value)
 	{
+		if (value == true && objMain.activeSelf)
+		{
+			objMain.SetActive(false);
+			objIngame.SetActive(true);
+			objIngameBubble.SetActive(false);
+		}
+		
 		PlayManager.ins.stage.CheckLine(value);
 	}
 

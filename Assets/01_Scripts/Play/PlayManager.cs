@@ -39,10 +39,14 @@ public class PlayManager : MonoBehaviour
 		}
 		PlayManager.ins = this;
 		//data = LevelData.ins;
+
+		QualitySettings.vSyncCount = 0;
+		Application.targetFrameRate = 60;
 	}
 
 	void Start()
     {
+
 		Init();
 		LevelData.ins.loading = loading;
 		LevelData.ins.LoadFirstLoad();

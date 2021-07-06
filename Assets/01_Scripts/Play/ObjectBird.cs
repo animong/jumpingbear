@@ -23,7 +23,7 @@ public class ObjectBird : ObjectBase
 		this.delayTime = delayTime;
 
 		vec = tran.position;
-		vec.y = y + 10;
+		vec.y = y + PlayManager.ins.data.lineGap - 10;// 10;
 		tran.position = vec;
 
 		showTime = Time.time;

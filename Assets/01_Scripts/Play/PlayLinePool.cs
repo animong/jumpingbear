@@ -47,6 +47,18 @@ public class PlayLinePool : MonoBehaviour
 		}
 	}
 
+	public PlayLine GetCurrentLine()
+	{
+		line = null;
+		for (int i = 0; i < view.Count; i++)
+		{
+			if (view[i].tran.position.y > PlayManager.ins.player.tran.position.y) continue;
+			if (line != null && line.tran.position.y > view[i].tran.position.y) continue;
+			line = view[i];
+		}
+		return line;
+	}
+
 	public void ReturnLine(PlayLine line)
 	{
 		list.Add(line);

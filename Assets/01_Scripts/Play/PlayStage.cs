@@ -59,14 +59,21 @@ public class PlayStage : MonoBehaviour
 		}
 
 		if (value == false) return;
-		
+
 		//Debug.Log("CheckLine");
 
-		ray = PlayManager.ins.cam3d.ScreenPointToRay(Input.mousePosition);
-		if (Physics.Raycast(ray, out hit, 10000, layerLine) == false) return;
-		//Debug.Log("PressLine");
+		if (LevelData.ins.alltouch == false)
+		{
+			ray = PlayManager.ins.cam3d.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(ray, out hit, 10000, layerLine) == false) return;
+			//Debug.Log("PressLine");
+			selLine = hit.transform.parent.GetComponent<PlayLine>();
+		}
+		else
+		{
+			selLine = PlayManager.ins.stage.linePool.GetCurrentLine();
+		}
 
-		selLine = hit.transform.parent.GetComponent<PlayLine>();
 		//if (selLine != linePool.actLine) selLine = null;
 		if (selLine == null) return;
 		//Debug.Log("SelectLine:" + tmpLine.obj.name);

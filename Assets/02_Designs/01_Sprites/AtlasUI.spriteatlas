@@ -32,7 +32,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: b09481418dce1ed48833fb50c7bb3b38, type: 3}
-    totalSpriteSurfaceArea: 1085831
+    totalSpriteSurfaceArea: 1095143
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -50,6 +50,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 49c57b0545667914d8e82ce243121011, type: 3}
   - {fileID: 21300000, guid: 40a379063c046d04eba957c77d031081, type: 3}
   - {fileID: 21300000, guid: d2761126a78ff8f47a74058200ac1a0f, type: 3}
+  - {fileID: 21300000, guid: 5eeae53665f8339469d76b579380052a, type: 3}
   - {fileID: 21300000, guid: 23671ec79a58b2a47930885026886c54, type: 3}
   - {fileID: 21300000, guid: 352d3918a428883418d7c3c87131313b, type: 3}
   - {fileID: 21300000, guid: 0d8bc828ec36eb648b4dc04fdebfe6ca, type: 3}
@@ -82,6 +83,7 @@ SpriteAtlas:
   - bg_h48
   - btn_green_h80
   - btn_coin
+  - icon_coin_h96
   - img_balloon
   - btn_ca
   - icon_rank

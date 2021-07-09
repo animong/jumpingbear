@@ -76,6 +76,8 @@ public class LevelData : MonoBehaviour
 	public int coinCheck;
 	[Header("동전 등장 확률 100% (정수)")]
 	public int coinRate;
+	[Header("아무곳이나 드래그해도 동작하도록")]
+	public bool alltouch;
 
 	[Header("라인 타입 정보")]
 	public List<LineData> lines;
@@ -102,7 +104,13 @@ public class LevelData : MonoBehaviour
 		is_load = false;
 		is_first_load = false;
 
+		DataInit();
 
+		//LoadData();
+	}
+
+	private void DataInit()
+	{
 		startY = 0;
 
 		playY = -20;
@@ -122,8 +130,10 @@ public class LevelData : MonoBehaviour
 		coinCheck = 2;
 		coinRate = 50;
 
+		alltouch = true;
+
 		lines = new List<LineData>();
-		
+
 		lines.Add(new LineData());
 		lines[lines.Count - 1].order = 100;
 		lines[lines.Count - 1].startY = 50;
@@ -135,8 +145,6 @@ public class LevelData : MonoBehaviour
 		lines[lines.Count - 1].order = 150;
 		lines[lines.Count - 1].startY = 10;
 		lines[lines.Count - 1].checkGap = 2;
-		
-		//LoadData();
 	}
 
 	public void LoadFirstLoad()
@@ -148,6 +156,7 @@ public class LevelData : MonoBehaviour
 	public void LoadData(bool restart = false)
 	{
 		if (is_load == true) return;
+		
 		is_restart = restart;
 
 		loading.obj.SetActive(true);
@@ -216,8 +225,10 @@ public class LevelData : MonoBehaviour
 				case "guideDetail": guideDetail = int.Parse(row[value_idx]); break;
 				case "coinCheck": coinCheck = int.Parse(row[value_idx]); break;
 				case "coinRate": coinRate = int.Parse(row[value_idx]); break;
+				case "alltouch": alltouch = int.Parse(row[value_idx]) == 1; break;
 			}
 		}
+		
 		www.Dispose();
 		www = null;
 		

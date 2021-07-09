@@ -88,6 +88,7 @@ public class PlayLine : MonoBehaviour
 		//Vector3 startM = PlayManager.ins.stage.MouseHitVec();
 		//Vector3 vec = Vector3.zero;
 		Vector3 vecLook = Vector3.zero;
+		hitPoint = PlayManager.ins.stage.MouseHitVec();
 
 		while (isDrag)
 		{
@@ -95,7 +96,16 @@ public class PlayLine : MonoBehaviour
 			//yield return new WaitForSeconds(0.01f);
 
 			//dragL = startL + (PlayManager.ins.stage.MouseHitVec() - startM);
-			dragL = PlayManager.ins.stage.MouseHitVec() - tran.position;
+			
+			if (LevelData.ins.alltouch)
+			{
+				dragL = (PlayManager.ins.stage.MouseHitVec() - hitPoint + arrPos[1]);// - tran.position;
+			}
+			else
+			{
+				dragL = PlayManager.ins.stage.MouseHitVec() - tran.position;
+			}
+
 			dragL.z = -2f;
 			if (dragL.y > 0f) dragL.y = 0;
 			if (dragL.y < -PlayManager.ins.data.lineDragMax) dragL.y = -PlayManager.ins.data.lineDragMax;
@@ -130,6 +140,7 @@ public class PlayLine : MonoBehaviour
 					vecLook.y += 10f;
 					PlayManager.ins.player.tranMesh.LookAt(vecLook);
 					PlayManager.ins.player.tranMesh.Rotate(Vector3.right, 90);
+					PlayManager.ins.player.tranMesh.Rotate(Vector3.down, 160);
 				}
 			}
 

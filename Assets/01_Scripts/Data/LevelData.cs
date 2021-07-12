@@ -325,7 +325,7 @@ public class LevelData : MonoBehaviour
 		is_load = false;
 		is_first_load = true;
 
-		if (PlayManager.ins != null /*&& is_restart*/) PlayManager.ins.GameOver();
+		if (PlayManager.ins != null /*&& is_restart*/) PlayManager.ins.Init(false);//GameOver();
 	}
 	/// <summary>
 	/// 라인 생성 설정 내용

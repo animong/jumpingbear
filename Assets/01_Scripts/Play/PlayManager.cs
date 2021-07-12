@@ -52,7 +52,7 @@ public class PlayManager : MonoBehaviour
 		LevelData.ins.LoadFirstLoad();
 	}
 
-	private void Init(bool isFirst = true, bool isStartY = true)
+	public void Init(bool isFirst = true, bool isStartY = true)
 	{
 		if (isFirst)
 		{
@@ -80,6 +80,8 @@ public class PlayManager : MonoBehaviour
 		stage.birdPool.UpdateBird();
 		stage.windPool.UpdateWind();
 
+		if (ui.btnRetry.obj.activeSelf == true)return;
+
 		player.UpdatePlayer();
 
 		/*
@@ -97,8 +99,12 @@ public class PlayManager : MonoBehaviour
 	public void GameOver()
 	{
 		Debug.Log("GAME OVER");
+		ui.objIngame.SetActive(true);
+		ui.objMain.SetActive(true);
+		ui.objTitle.SetActive(false);
+		ui.btnRetry.obj.SetActive(true);
 
-		Init(false);
+		//Init(false);
 		//SceneManager.ins.LoadScene(SceneManager.SCENE.LOBBY);
 	}
 

@@ -10,13 +10,18 @@ public class PlayUI : MonoBehaviour
 	public UnityEngine.UI.Text txtDistanceTop;
 
 	public UnityEngine.UI.Text txtCoin;
+	public UnityEngine.UI.Text txtTopDistance;
 	
 	public GameObject objIngame;
 	public GameObject objMain;
-
-	public GameObject objIngameBubble;
 	
+	public GameObject objTitle;
+	public ButtonObject btnRetry;
 
+	public ButtonObject btnChar;
+	public ButtonObject btnShop;
+	public ButtonObject btnRanking;
+	public ButtonObject btnOption;
 
 	public ButtonObject btnPause;
 
@@ -30,6 +35,7 @@ public class PlayUI : MonoBehaviour
 	{
 		btnHitArea.fncPress = PressHit;
 		btnPause.btn.onClick.AddListener(ClickPause);
+		btnRetry.btn.onClick.AddListener(ClickRetry);
 
 		objMain.SetActive(true);
 		objIngame.SetActive(false);
@@ -52,7 +58,7 @@ public class PlayUI : MonoBehaviour
 		{
 			objMain.SetActive(false);
 			objIngame.SetActive(true);
-			objIngameBubble.SetActive(false);
+			btnRetry.obj.SetActive(false);
 		}
 		
 		PlayManager.ins.stage.CheckLine(value);
@@ -82,5 +88,12 @@ public class PlayUI : MonoBehaviour
 	private void ClickPause()
 	{
 		SceneManager.ins.LoadScene(SceneManager.SCENE.LOBBY);
+	}
+
+	private void ClickRetry()
+	{
+		PlayManager.ins.Init(false);
+		btnRetry.obj.SetActive(false);
+		objMain.SetActive(false);
 	}
 }

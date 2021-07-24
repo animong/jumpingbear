@@ -1381,6 +1381,7 @@ MonoBehaviour:
   objMain: {fileID: 1670055349}
   objTitle: {fileID: 9979097}
   btnRetry: {fileID: 260961525}
+  btnRetryNow: {fileID: 1560616102}
   btnChar: {fileID: 9979096}
   btnShop: {fileID: 9979095}
   btnRanking: {fileID: 9979094}
@@ -1908,6 +1909,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b74c4c7ca9cde4085c8c24780ae061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1560616102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4895811702542037450, guid: 6e8efa244d8e7784bb7e13433108f0c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 866308673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8912578ba102e44974fbf8af17064d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1670055349 stripped

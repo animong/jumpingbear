@@ -8,7 +8,7 @@ public class PlayLinePool : MonoBehaviour
 	public PlayLine prefab;
 
 	private List<PlayLine> list;
-	private List<PlayLine> view;
+	public List<PlayLine> view;
 	
 	[HideInInspector]
 	public PlayLine actLine;
@@ -20,6 +20,9 @@ public class PlayLinePool : MonoBehaviour
 	private int startRan;
 
 	private int n;
+
+	public int jump_index;
+	public float jump_x;
 
 	public void Init()
 	{
@@ -77,7 +80,9 @@ public class PlayLinePool : MonoBehaviour
 		ReturnViewAll();
 
 		vec = Vector3.zero;
-		startRan = Random.Range(0, 2);
+		//startRan = Random.Range(0, 2);
+		startRan = 0;
+		jump_index = -1;
 
 		if (isStartY) idxCreate = Mathf.FloorToInt(PlayManager.ins.data.startY / PlayManager.ins.data.lineGap);
 
@@ -105,12 +110,31 @@ public class PlayLinePool : MonoBehaviour
 		return view[view.Count - 1];
 	}
 
-	public void CreateLine()
+	public void CreateLine(bool isFirst = false)
 	{
+		if (isFirst)
+		{
+			int idx = 0;
+			float maxY = 0f;
+			//가장 위에 있는 라인 반환
+			for (int i = 0; i < view.Count; i++)
+			{
+				if (view[i].obj.activeSelf == false) continue;
+				if (maxY == 0f || view[i].tran.localPosition.y > maxY)
+				{
+					maxY = view[i].tran.localPosition.y;
+					idx = i;
+				}
+			}
+			ReturnLine(view[idx]);
+			idxCreate--;
+		}
+		
 		line = GetLine();
 
 		line.data = PlayManager.ins.data.lines[PlayManager.ins.data.GetLineIdx(idxCreate)];
-		
+		if(isFirst) line.data = PlayManager.ins.data.lines[PlayManager.ins.data.GetLineIdx(0)];
+
 		line.Init();
 		line.tran.SetParent(PlayManager.ins.stage.ground.tranScroll);
 
@@ -121,7 +145,19 @@ public class PlayLinePool : MonoBehaviour
 		vec.y = idxCreate * PlayManager.ins.data.lineGap;
 		vec.x = PlayManager.MAX_W * 0.25f;
 		if (idxCreate % 2 == startRan) vec.x *= -1f;
+
+		if (idxCreate == 0) vec.x = PlayManager.MAX_W * -0.1f;
+
+		if (isFirst)
+		{
+			if (jump_x < 0) { vec.x = PlayManager.MAX_W * -0.1f; }
+			else { vec.x = PlayManager.MAX_W * 0.1f; }
+			vec.y = jump_index * PlayManager.ins.data.lineGap;
+		}
+
 		line.tran.localPosition = vec;
+
+		line.pos_index = idxCreate;
 
 		//넓이 설정
 		vec = line.render.GetPosition(0);
@@ -149,7 +185,9 @@ public class PlayLinePool : MonoBehaviour
 		line.col.size = vec;
 
 		//동전 등장 여부
-		if (idxCreate % PlayManager.ins.data.coinCheck == 0
+		if (isFirst == false
+			&& idxCreate != 0
+			&& idxCreate % PlayManager.ins.data.coinCheck == 0
 			&& PlayManager.ins.data.coinRate <= Random.Range(0, 101))
 		{
 			line.coin.obj.SetActive(true);	
@@ -167,6 +205,13 @@ public class PlayLinePool : MonoBehaviour
 		if (line.data.windSpeed != 0)
 		{   //바람 설정
 			PlayManager.ins.stage.windPool.CreateWind(line.tran.position.y, line.data.windSpeed);
+		}
+		if (isFirst)
+		{
+			view.Remove(line);
+			view.Insert(0, line);
+			actLine = view[0];
+			return;
 		}
 
 		idxCreate++;

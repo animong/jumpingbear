@@ -17,6 +17,7 @@ public class PlayUI : MonoBehaviour
 	
 	public GameObject objTitle;
 	public ButtonObject btnRetry;
+	public ButtonObject btnRetryNow;
 
 	public ButtonObject btnChar;
 	public ButtonObject btnShop;
@@ -24,7 +25,7 @@ public class PlayUI : MonoBehaviour
 	public ButtonObject btnOption;
 
 	public ButtonObject btnPause;
-
+	//
 	private int num;
 	[SerializeField]
 	private int distance;
@@ -36,6 +37,7 @@ public class PlayUI : MonoBehaviour
 		btnHitArea.fncPress = PressHit;
 		btnPause.btn.onClick.AddListener(ClickPause);
 		btnRetry.btn.onClick.AddListener(ClickRetry);
+		btnRetryNow.btn.onClick.AddListener(ClickRetryNow);
 
 		objMain.SetActive(true);
 		objIngame.SetActive(false);
@@ -59,6 +61,7 @@ public class PlayUI : MonoBehaviour
 			objMain.SetActive(false);
 			objIngame.SetActive(true);
 			btnRetry.obj.SetActive(false);
+			btnRetryNow.obj.SetActive(false);
 		}
 		
 		PlayManager.ins.stage.CheckLine(value);
@@ -94,6 +97,18 @@ public class PlayUI : MonoBehaviour
 	{
 		PlayManager.ins.Init(false);
 		btnRetry.obj.SetActive(false);
+		btnRetryNow.obj.SetActive(false);
+		objMain.SetActive(false);
+	}
+
+	private void ClickRetryNow()
+	{
+		PlayManager.ins.stage.linePool.CreateLine(true);
+		PlayManager.ins.player.Init(true);
+		PlayManager.ins.stage.linePool.actLine.FirstTake();
+
+		btnRetry.obj.SetActive(false);
+		btnRetryNow.obj.SetActive(false);
 		objMain.SetActive(false);
 	}
 }

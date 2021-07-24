@@ -33,18 +33,18 @@ public class Player : MonoBehaviour
 	private Vector3 prevPos;
 	private float ShotPos;
 
-	public void Init()
+	public void Init(bool isRestart = false)
 	{
-		LineTake();
+		LineTake(true, isRestart);
 		
 		prevPos = vec;
 		guide.Init();
 	}
-
+	
 	/// <summary>
 	/// 라인 착지
 	/// </summary>
-	private void LineTake(bool setX = true)
+	private void LineTake(bool setX = true, bool isRestart = false)
 	{
 		force = Vector3.zero;
 		isFly = false;
@@ -61,7 +61,8 @@ public class Player : MonoBehaviour
 
 		ShotPos = tran.localPosition.y;
 
-		UpdateCamPos();
+		if(isRestart) PlayManager.ins.stage.ground.UpdateMoveTween();
+		else UpdateCamPos();
 	}
 
 	public void SetForceStart(ref Vector2 vecOrg, ref Vector3 vecSet)
@@ -142,6 +143,9 @@ public class Player : MonoBehaviour
 					PlayManager.ins.stage.linePool.actLine = line;
 					line.TakePlayer();
 					LineTake(false);
+
+					PlayManager.ins.stage.linePool.jump_index = line.pos_index;
+					PlayManager.ins.stage.linePool.jump_x = line.tran.position.x;
 					return;
 				}
 				else 
@@ -156,10 +160,10 @@ public class Player : MonoBehaviour
 		}
 	
 		prevPos = tran.position;
-		
+		//
 		if (tran.position.y < -100
-			|| PlayManager.MAX_W * -0.55f > tran.position.x
-			|| PlayManager.MAX_W * 0.55f < tran.position.x)
+			|| PlayManager.MAX_W * -0.59f > tran.position.x
+			|| PlayManager.MAX_W * 0.59f < tran.position.x)
 		{   //게임 오버 초기화
 			PlayManager.ins.GameOver();
 			return;	

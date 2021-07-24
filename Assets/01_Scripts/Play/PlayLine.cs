@@ -31,6 +31,8 @@ public class PlayLine : MonoBehaviour
 	private float move_y_min;
 	private float move_y_max;
 
+	public int pos_index;
+
 	public void Init()
 	{
 		isDrag = false;

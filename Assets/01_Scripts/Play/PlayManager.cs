@@ -103,6 +103,7 @@ public class PlayManager : MonoBehaviour
 		ui.objMain.SetActive(true);
 		ui.objTitle.SetActive(false);
 		ui.btnRetry.obj.SetActive(true);
+		if(stage.linePool.jump_index != -1) ui.btnRetryNow.obj.SetActive(true);
 
 		//Init(false);
 		//SceneManager.ins.LoadScene(SceneManager.SCENE.LOBBY);

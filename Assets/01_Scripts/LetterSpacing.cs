@@ -346,7 +346,7 @@ namespace UnityEngine.UI
         public void ModifyVertices(List<UIVertex> verts)
         {
             if (!IsActive()) return;
-			useRichText = true;
+			//useRichText = true;
             Text text = GetComponent<Text>();
  
  

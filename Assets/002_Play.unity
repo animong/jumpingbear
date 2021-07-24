@@ -987,9 +987,21 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 866308673}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &866308677 stripped
+--- !u!114 &866308675 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3673143856809854915, guid: 6e8efa244d8e7784bb7e13433108f0c7,
+  m_CorrespondingSourceObject: {fileID: 2711862391096491758, guid: 6e8efa244d8e7784bb7e13433108f0c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 866308673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &866308676 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7814570277663978677, guid: 6e8efa244d8e7784bb7e13433108f0c7,
     type: 3}
   m_PrefabInstance: {fileID: 866308673}
   m_PrefabAsset: {fileID: 0}
@@ -1361,8 +1373,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnHitArea: {fileID: 2053046029}
-  txtDistance: {fileID: 866308677}
-  txtDistanceTop: {fileID: 1549166243}
+  txtDistance: {fileID: 866308676}
+  txtDistanceTop: {fileID: 866308675}
   txtCoin: {fileID: 1362188253}
   txtTopDistance: {fileID: 9979098}
   objIngame: {fileID: 1685845984}
@@ -1811,18 +1823,6 @@ MonoBehaviour:
   txt: {fileID: 0}
   spr: {fileID: 1436553128}
   isAni: 1
---- !u!114 &1549166243 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4016808614879122973, guid: 6e8efa244d8e7784bb7e13433108f0c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 866308673}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1551021169
 PrefabInstance:
   m_ObjectHideFlags: 0

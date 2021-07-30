@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "577776192097",
+    "project_id": "api-project-84101616",
+    "storage_bucket": "api-project-84101616.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577776192097:android:4e361db8bf635ff32cb820",
+        "android_client_info": {
+          "package_name": "com.animong.JumpingBear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577776192097-f8sdrish3rhdl763glka2n9ca250olvk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmmW5e1VnP-0kGW_U8eQ93_CWDRADII1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577776192097-f8sdrish3rhdl763glka2n9ca250olvk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

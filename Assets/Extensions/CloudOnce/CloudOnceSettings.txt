@@ -1,0 +1,33 @@
+{
+	"AchievementIDs":[],
+	"LeaderboardIDs":[
+		{
+			"InternalID":"HigeScore",
+			"AppleID":"",
+			"GoogleID":"CgkI4ZSUsegQEAIQBA"
+		}
+	],
+	"CloudVariables":[
+		{
+			"Key":"Coin",
+			"Type":"0",
+			"DefaultValue":"0",
+			"PersistenceType":"0",
+			"AllowNegative":false
+		},
+		{
+			"Key":"Score",
+			"Type":"0",
+			"DefaultValue":"0",
+			"PersistenceType":"0",
+			"AllowNegative":false
+		}
+	],
+	"AppleSupported":false,
+	"GoogleSupported":true,
+	"GoogleAppID":"577776192097",
+	"GoogleSetupRun":true,
+	"DebugModeEnabled":false,
+	"Version":"2.7.2",
+	"SettingsLocation":"1"
+}

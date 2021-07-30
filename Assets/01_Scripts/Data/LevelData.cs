@@ -1,43 +1,43 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 
 public class LineData
 {
-	/// <summary> Ã¼Å©¼ø¼­ </summary>
+	/// <summary> ì²´í¬ìˆœì„œ </summary>
 	public int order;
-	/// <summary> µîÀå ³ôÀÌ </summary>
+	/// <summary> ë“±ì¥ ë†’ì´ </summary>
 	public int startY;
-	/// <summary> Ã¼Å©´Ü°è</summary>
+	/// <summary> ì²´í¬ë‹¨ê³„</summary>
 	public int checkGap;
-	/// <summary> ¼³Á¤ È®·ü</summary>
+	/// <summary> ì„¤ì • í™•ë¥ </summary>
 	public int rate;
-	/// <summary> È­¸éÇ¥½Ã½Ã°£ </summary>
+	/// <summary> í™”ë©´í‘œì‹œì‹œê°„ </summary>
 	public int time;
 
-	/// <summary> ÀÌµ¿ ¼Óµµ </summary>
+	/// <summary> ì´ë™ ì†ë„ </summary>
 	public int move_speed;
-	/// <summary> ÁÂ¿ì ÀÌµ¿ ÃÖ¼Ò°ª </summary>
+	/// <summary> ì¢Œìš° ì´ë™ ìµœì†Œê°’ </summary>
 	public int move_X_min;
-	/// <summary> ÁÂ¿ì ÀÌµ¿ ÃÖ´ë°ª </summary>
+	/// <summary> ì¢Œìš° ì´ë™ ìµœëŒ€ê°’ </summary>
 	public int move_X_max;
-	/// <summary> À§¾Æ·¡ ÀÌµ¿ ÃÖ¼Ò °ª </summary>
+	/// <summary> ìœ„ì•„ë˜ ì´ë™ ìµœì†Œ ê°’ </summary>
 	public int move_y_min;
-	/// <summary> À§¾Æ·¡ ÀÌµ¿ ÃÖ´ë °ª </summary>
+	/// <summary> ìœ„ì•„ë˜ ì´ë™ ìµœëŒ€ ê°’ </summary>
 	public int move_y_max;
 
-	/// <summary> ¼öÁ¤ ³ĞÀÌ ÃÖ¼Ò°ª </summary>
+	/// <summary> ìˆ˜ì • ë„“ì´ ìµœì†Œê°’ </summary>
 	public int width_min;
-	/// <summary> ¼öÁ¤ ³ĞÀÌ ÃÖ´ë°ª  </summary>
+	/// <summary> ìˆ˜ì • ë„“ì´ ìµœëŒ€ê°’  </summary>
 	public int width_max;
 
-	/// <summary> ¹Ù¶÷ ¼Óµµ </summary>
+	/// <summary> ë°”ëŒ ì†ë„ </summary>
 	public int windSpeed;
 
-	/// <summary> »õ ¼Óµµ </summary>
+	/// <summary> ìƒˆ ì†ë„ </summary>
 	public int birdSpeed;
-	/// <summary> »õ µîÀå Å¸ÀÌ¹Ö </summary>
+	/// <summary> ìƒˆ ë“±ì¥ íƒ€ì´ë° </summary>
 	public int birdShowTime;
 
 }
@@ -46,40 +46,40 @@ public class LevelData : MonoBehaviour
 {
 	public static LevelData ins;
 	
-	[Header("½ÃÀÛ³ôÀÌ (¼Ò¼öÁ¡)"), Space(-10)]
+	[Header("ì‹œì‘ë†’ì´ (ì†Œìˆ˜ì )"), Space(-10)]
 	public float startY;
-	[Header("ÇÃ·¹ÀÌ ³ôÀÌ : Áß½É ±âÁØ (¼Ò¼öÁ¡)"), Space(-10)]
+	[Header("í”Œë ˆì´ ë†’ì´ : ì¤‘ì‹¬ ê¸°ì¤€ (ì†Œìˆ˜ì )"), Space(-10)]
 	public float playY;
-	[Header("Áß·Â (¼Ò¼öÁ¡)"), Space(-10)]
+	[Header("ì¤‘ë ¥ (ì†Œìˆ˜ì )"), Space(-10)]
 	public float gravity;
 
-	[Header("¼± »ı¼º °£°İ (¼Ò¼öÁ¡)")]
+	[Header("ì„  ìƒì„± ê°„ê²© (ì†Œìˆ˜ì )")]
 	public float lineGap;
-	[Header("¼± ³ĞÀÌ (¼Ò¼öÁ¡)"), Space(-10)]
+	[Header("ì„  ë„“ì´ (ì†Œìˆ˜ì )"), Space(-10)]
 	public float lineWidth;
-	[Header("¼± ±½±â (¼Ò¼öÁ¡)"), Space(-10)]
+	[Header("ì„  êµµê¸° (ì†Œìˆ˜ì )"), Space(-10)]
 	public float lineHeight;
 
-	[Header("´ç±â´Â Èû Àü´ŞµÇ´Â ºñÀ² (¼Ò¼öÁ¡)")]
+	[Header("ë‹¹ê¸°ëŠ” í˜ ì „ë‹¬ë˜ëŠ” ë¹„ìœ¨ (ì†Œìˆ˜ì )")]
 	public float lineForceRate;
-	[Header("´ç±â´Â ÃÖ´ë °Å¸® (¼Ò¼öÁ¡)"), Space(-10)]
+	[Header("ë‹¹ê¸°ëŠ” ìµœëŒ€ ê±°ë¦¬ (ì†Œìˆ˜ì )"), Space(-10)]
 	public float lineDragMax;
-	[Header("¹Ğ¾î³»´Â Èû (¼Ò¼öÁ¡)"), Space(-10)]
+	[Header("ë°€ì–´ë‚´ëŠ” í˜ (ì†Œìˆ˜ì )"), Space(-10)]
 	public float lineForce;
 
-	[Header("°¡ÀÌµå ¼± ±æÀÌ (Á¤¼ö)")]
+	[Header("ê°€ì´ë“œ ì„  ê¸¸ì´ (ì •ìˆ˜)")]
 	public int guideLength;
-	[Header("°¡ÀÌµå ¼± ÃÎÃÎÇÑ Á¤µµ (Á¤¼ö)"), Space(-10)]
+	[Header("ê°€ì´ë“œ ì„  ì´˜ì´˜í•œ ì •ë„ (ì •ìˆ˜)"), Space(-10)]
 	public int guideDetail;
 
-	[Header("µ¿Àü µîÀå °£°İ (Á¤¼ö)")]
+	[Header("ë™ì „ ë“±ì¥ ê°„ê²© (ì •ìˆ˜)")]
 	public int coinCheck;
-	[Header("µ¿Àü µîÀå È®·ü 100% (Á¤¼ö)")]
+	[Header("ë™ì „ ë“±ì¥ í™•ë¥  100% (ì •ìˆ˜)")]
 	public int coinRate;
-	[Header("¾Æ¹«°÷ÀÌ³ª µå·¡±×ÇØµµ µ¿ÀÛÇÏµµ·Ï")]
+	[Header("ì•„ë¬´ê³³ì´ë‚˜ ë“œë˜ê·¸í•´ë„ ë™ì‘í•˜ë„ë¡")]
 	public bool alltouch;
 
-	[Header("¶óÀÎ Å¸ÀÔ Á¤º¸")]
+	[Header("ë¼ì¸ íƒ€ì… ì •ë³´")]
 	public List<LineData> lines;
 
 	public PopupLoaing loading;
@@ -181,7 +181,7 @@ public class LevelData : MonoBehaviour
 
 		if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError)
 		{
-			Debug.Log("½ÃÆ® ºÒ·¯¿À´Â °úÁ¤¿¡¼­ ¿¡·¯");
+			Debug.Log("ì‹œíŠ¸ ë¶ˆëŸ¬ì˜¤ëŠ” ê³¼ì •ì—ì„œ ì—ëŸ¬");
 			is_load = false;
 			yield break;
 		}
@@ -252,7 +252,7 @@ public class LevelData : MonoBehaviour
 
 		if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError)
 		{
-			Debug.Log("½ÃÆ® ºÒ·¯¿À´Â °úÁ¤¿¡¼­ ¿¡·¯");
+			Debug.Log("ì‹œíŠ¸ ë¶ˆëŸ¬ì˜¤ëŠ” ê³¼ì •ì—ì„œ ì—ëŸ¬");
 			is_load = false;
 			yield break;
 		}
@@ -328,7 +328,7 @@ public class LevelData : MonoBehaviour
 		if (PlayManager.ins != null /*&& is_restart*/) PlayManager.ins.Init(false);//GameOver();
 	}
 	/// <summary>
-	/// ¶óÀÎ »ı¼º ¼³Á¤ ³»¿ë
+	/// ë¼ì¸ ìƒì„± ì„¤ì • ë‚´ìš©
 	/// </summary>
 	/// <param name="idxCreate"></param>
 	/// <returns></returns>

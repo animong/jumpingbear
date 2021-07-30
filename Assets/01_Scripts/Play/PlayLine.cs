@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -125,7 +125,7 @@ public class PlayLine : MonoBehaviour
 			*/
 
 			if (this == PlayManager.ins.stage.linePool.actLine)
-			{	//À¯Àú°¡ ¿Ã¶ó°¡ ÀÖ´Â ¶óÀÎ µå·¡±×½Ã¿¡¸¸ ÇÃ·¹ÀÌ¾î À§Ä¡ ÀÌµ¿
+			{	//ìœ ì €ê°€ ì˜¬ë¼ê°€ ìˆëŠ” ë¼ì¸ ë“œë˜ê·¸ì‹œì—ë§Œ í”Œë ˆì´ì–´ ìœ„ì¹˜ ì´ë™
 				
 				if (Vector3.Distance(Vector3.zero, dragL) < 2f
 					|| dragL.y > -1f)
@@ -223,7 +223,7 @@ public class PlayLine : MonoBehaviour
 			}
 
 			if (time + 0.2f < Time.time)
-			{   //0.2ÃÊ µ¿¾È ¸ğ¼Ç
+			{   //0.2ì´ˆ ë™ì•ˆ ëª¨ì…˜
 				//isReturn = false;
 				PlayManager.ins.stage.linePool.ReturnLine(this);
 				PlayManager.ins.stage.linePool.CreateLine();
@@ -260,7 +260,7 @@ public class PlayLine : MonoBehaviour
 				yield break;
 			}
 			
-			//½Ã°£¿¡ÀÇÇÑ ¼± ±æÀÌ Á¡Á¡ Á¼¾Æ Áöµµ·Ï
+			//ì‹œê°„ì—ì˜í•œ ì„  ê¸¸ì´ ì ì  ì¢ì•„ ì§€ë„ë¡
 			rate = 1f - ((Time.time - TakeTime) / data.time);
 
 			for (int i = 0; i < arrPos.Length; i++)

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -97,7 +97,7 @@ public class PlayLinePool : MonoBehaviour
 	private PlayLine GetLine()
 	{
 		if (list.Count > 0)
-		{	//´ë±âÁß ¶óÀÎ ÀÖ´Â °æ¿ì »ı¼ºµÈ ¸®½ºÆ® Àü´Ş
+		{	//ëŒ€ê¸°ì¤‘ ë¼ì¸ ìˆëŠ” ê²½ìš° ìƒì„±ëœ ë¦¬ìŠ¤íŠ¸ ì „ë‹¬
 			line = list[0];
 			list.RemoveAt(0);
 			view.Add(line);
@@ -105,7 +105,7 @@ public class PlayLinePool : MonoBehaviour
 			return line;
 		}
 
-		//´ë±â ¶óÀÎÀÌ ¾ø´Â °æ¿ì »ı¼ºÇØ¼­ Àü´Ş
+		//ëŒ€ê¸° ë¼ì¸ì´ ì—†ëŠ” ê²½ìš° ìƒì„±í•´ì„œ ì „ë‹¬
 		view.Add(GameObject.Instantiate<PlayLine>(prefab));
 		return view[view.Count - 1];
 	}
@@ -116,7 +116,7 @@ public class PlayLinePool : MonoBehaviour
 		{
 			int idx = 0;
 			float maxY = 0f;
-			//°¡Àå À§¿¡ ÀÖ´Â ¶óÀÎ ¹İÈ¯
+			//ê°€ì¥ ìœ„ì— ìˆëŠ” ë¼ì¸ ë°˜í™˜
 			for (int i = 0; i < view.Count; i++)
 			{
 				if (view[i].obj.activeSelf == false) continue;
@@ -141,7 +141,7 @@ public class PlayLinePool : MonoBehaviour
 		line.tran.localScale = Vector3.one;
 		line.tran.localRotation = Quaternion.identity;
 
-		//À§Ä¡ ¼³Á¤
+		//ìœ„ì¹˜ ì„¤ì •
 		vec.y = idxCreate * PlayManager.ins.data.lineGap;
 		vec.x = PlayManager.MAX_W * 0.25f;
 		if (idxCreate % 2 == startRan) vec.x *= -1f;
@@ -159,7 +159,7 @@ public class PlayLinePool : MonoBehaviour
 
 		line.pos_index = idxCreate;
 
-		//³ĞÀÌ ¼³Á¤
+		//ë„“ì´ ì„¤ì •
 		vec = line.render.GetPosition(0);
 		float line_width;
 		if (line.data.width_min != 0)
@@ -179,12 +179,12 @@ public class PlayLinePool : MonoBehaviour
 
 		line.render.startWidth = PlayManager.ins.data.lineHeight;
 
-		//Ãæµ¹¿µ¿ª ¼³Á¤
+		//ì¶©ëŒì˜ì—­ ì„¤ì •
 		vec = line.col.size;
 		vec.x = PlayManager.ins.data.lineWidth;// PlayManager.MAX_W * 0.5f;
 		line.col.size = vec;
 
-		//µ¿Àü µîÀå ¿©ºÎ
+		//ë™ì „ ë“±ì¥ ì—¬ë¶€
 		if (isFirst == false
 			&& idxCreate != 0
 			&& idxCreate % PlayManager.ins.data.coinCheck == 0
@@ -198,12 +198,12 @@ public class PlayLinePool : MonoBehaviour
 		line.obj.SetActive(true);
 
 		if (line.data.birdSpeed != 0)
-		{	//»õ ¼³Á¤
+		{	//ìƒˆ ì„¤ì •
 			PlayManager.ins.stage.birdPool.CreateBird(line.tran.position.y, line.data.birdSpeed, line.data.birdShowTime);
 		}
 
 		if (line.data.windSpeed != 0)
-		{   //¹Ù¶÷ ¼³Á¤
+		{   //ë°”ëŒ ì„¤ì •
 			PlayManager.ins.stage.windPool.CreateWind(line.tran.position.y, line.data.windSpeed);
 		}
 		if (isFirst)

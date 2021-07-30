@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 	}
 	
 	/// <summary>
-	/// ¶óÀÎ ÂøÁö
+	/// ë¼ì¸ ì°©ì§€
 	/// </summary>
 	private void LineTake(bool setX = true, bool isRestart = false)
 	{
@@ -82,12 +82,12 @@ public class Player : MonoBehaviour
 	{
 		if (isFly == false) return;
 		
-		//³¯¾Æ°¨
+		//ë‚ ì•„ê°
 		force.y -= PlayManager.ins.data.gravity * Time.smoothDeltaTime;
 		vecMove = tran.position;
 		vecMove += force * Time.smoothDeltaTime;
 
-		//¹Ù¶÷¿¡ ÀÇÇÑ ÀÌµ¿
+		//ë°”ëŒì— ì˜í•œ ì´ë™
 		vecMove.x += PlayManager.ins.stage.windPool.CheckWind(tran.position.y);
 
 		tran.position = vecMove;
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
 				PlayManager.ins.ui.AddCoin();
 			}
 		}
-		//»õ Ãæµ¹
+		//ìƒˆ ì¶©ëŒ
 		colHit = Physics.OverlapCapsule(tranPoint1.position, tranPoint2.position, 1f, PlayManager.ins.stage.layerBird);
 		if (colHit != null)
 		{
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		//Ãæµ¹ Ã¼Å©
+		//ì¶©ëŒ ì²´í¬
 		colHit = Physics.OverlapCapsule(tranPoint1.position, tranPoint2.position, 1f, PlayManager.ins.stage.layerLine);
 		if (colHit != null)
 		{
@@ -137,10 +137,11 @@ public class Player : MonoBehaviour
 					&& tran.position.x > line.tran.position.x + line.render.GetPosition(0).x
 					&& tran.position.x < line.tran.position.x + line.render.GetPosition(2).x
 					)
-				{   //ÂøÁö
+				{   //ì°©ì§€
 					force = Vector3.zero;
 					//vec = tran.position;
 					PlayManager.ins.stage.linePool.actLine = line;
+					PlayManager.ins.ui.UpdateDistance(line.pos_index);
 					line.TakePlayer();
 					LineTake(false);
 
@@ -149,7 +150,7 @@ public class Player : MonoBehaviour
 					return;
 				}
 				else 
-				{   //À­¹ßÆÇ
+				{   //ìœ—ë°œíŒ
 					if (force.y > 0) force.y *= -1;
 					force.y -= 5f;
 					force.x *= 0.5f;
@@ -164,7 +165,7 @@ public class Player : MonoBehaviour
 		if (tran.position.y < -100
 			|| PlayManager.MAX_W * -0.59f > tran.position.x
 			|| PlayManager.MAX_W * 0.59f < tran.position.x)
-		{   //°ÔÀÓ ¿À¹ö ÃÊ±âÈ­
+		{   //ê²Œì„ ì˜¤ë²„ ì´ˆê¸°í™”
 			PlayManager.ins.GameOver();
 			return;	
 		}
@@ -174,7 +175,7 @@ public class Player : MonoBehaviour
 	}
 
 	/// <summary>
-	/// È­¸é ¿òÁ÷ÀÓ
+	/// í™”ë©´ ì›€ì§ì„
 	/// </summary>
 	private void UpdateCamPos()
 	{
